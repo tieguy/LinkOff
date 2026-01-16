@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="popup.css" />
+</head>
+
+<body>
+  <nav class="tabs is-boxed is-fullwidth">
+    <ul>
+      <li class="tab is-active" title="Home"><a>Home</a></li>
+      <li class="tab" title="Feed"><a>Feed</a></li>
+      <li class="tab" title="Jobs"><a>Jobs</a></li>
+      <li class="tab" title="Misc"><a>Misc</a></li>
+    </ul>
+  </nav>
+
+  <div class="columns is-mobile">
+    <div id="Home" class="column is-10 is-offset-1 content-tab">
+      <div class="block">
+        <h2 class="title is-2 has-text-centered">Link Off</h2>
+        <p class="subtitle has-text-centered">
+          by <a href="https://www.linkedin.com/in/njelich/">Noah Jelich</a>
+        </p>
+      </div>
+
+      <div class="container onoffswitch mb-5">
+        <input type="checkbox" class="onoffswitch-checkbox" id="main-toggle" tabindex="0" checked />
+        <label class="onoffswitch-label" for="main-toggle">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+
+      <div class="field has-text-centered">
+        <input id="gentle-mode" class="switch is-rounded" type="checkbox" />
+        <label for="gentle-mode">
+          <span class="is-inline-flex is-align-items-center">
+            Gentle mode
+
+            <!-- Info tooltip -->
+            <span class="has-tooltip-arrow has-tooltip-multiline icon ml-1"
+              data-tooltip="Fading blocked elements instead&#10;of removing them">
+              <img src="assets/icons/info.svg" class="icon" />
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="field has-text-centered">
+        <input id="wide-mode" class="switch is-rounded" type="checkbox" />
+        <label for="wide-mode">Wide mode (wider UI)</label>
+      </div>
+
+      <div class="field has-text-centered">
+        <input id="dark-mode" class="switch is-rounded" type="checkbox" />
+        <label for="dark-mode"> Dark mode (deprecated) </label>
+      </div>
+
+      <div class="content has-text-centered">
+        <p>
+          <strong>Link Off - LinkedIn Filter and Customizer</strong> by
+          <a href="https://jelich.cc">Noah Jelich</a>. The source code is
+          licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a> and
+          available on
+          <a href="https://github.com/njelich/LinkOff">my github</a>. Add me on
+          <a href="https://www.linkedin.com/in/njelich/">LinkedIn</a> or
+          <a href="https://ko-fi.com/G2G547IJY" target="_blank">
+            Buy me a Coffee</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="Feed" class="px-4 pb-6 content-tab">
+    <div class="field">
+      <input id="hide-whole-feed" class="switch" type="checkbox" />
+      <label for="hide-whole-feed">Hide the whole feed</label>
+    </div>
+
+    <div class="field">
+      <input id="sort-by-recent" class="switch" type="checkbox" />
+      <label for="sort-by-recent">Sort posts by recent</label>
+    </div>
+
+    <div class="divider">Hide posts by content</div>
+
+    <div class="columns is-mobile">
+      <div class="column is-half">
+        <div class="field">
+          <input id="hide-polls" class="switch is-rounded" type="checkbox" />
+          <label for="hide-polls">Hide polls</label>
+        </div>
+        <div class="field">
+          <input id="hide-videos" class="switch is-rounded" type="checkbox" />
+          <label for="hide-videos">Hide videos</label>
+        </div>
+        <div class="field">
+          <input id="hide-links" class="switch is-rounded" type="checkbox" />
+          <label for="hide-links">Hide links</label>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="field">
+          <input id="hide-images" class="switch is-rounded" type="checkbox" />
+          <label for="hide-images">Hide images</label>
+        </div>
+        <div class="field">
+          <input id="hide-carousels" class="switch is-rounded" type="checkbox" />
+          <label for="hide-carousels">Hide carousels</label>
+        </div>
+        <div class="field">
+          <input id="hide-promoted" class="switch is-rounded" type="checkbox" />
+          <label for="hide-promoted">Hide promoted</label>
+        </div>
+        <div class="field">
+          <input id="hide-shared" class="switch is-rounded" type="checkbox" />
+          <label for="hide-shared">Hide shared</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">Hide posts by author</div>
+
+    <div class="columns is-mobile">
+      <div class="column is-half">
+        <div class="field">
+          <input id="hide-by-people" class="switch is-rounded" type="checkbox" />
+          <label for="hide-by-people">By people</label>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="field">
+          <input id="hide-by-companies" class="switch is-rounded" type="checkbox" />
+          <label for="hide-by-companies">By companies</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">Hide by keywords</div>
+
+    <div class="field">
+      <input id="hide-by-keywords" placeholder="Add keywords" class="tagify--outside" />
+    </div>
+
+    <div class="divider">Hide post by interactions</div>
+
+    <div class="field">
+      <input id="hide-suggested" class="switch is-rounded" type="checkbox" />
+      <label for="hide-suggested">Hide suggestions</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-liked" class="switch is-rounded" type="checkbox" />
+      <label for="hide-liked">Hide liked by connections</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-other-reactions" class="switch is-rounded" type="checkbox" />
+      <label for="hide-other-reactions">Hide with other reactions</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-commented-on" class="switch is-rounded" type="checkbox" />
+      <label for="hide-commented-on">Hide commented on by connections</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-followed" class="switch is-rounded" type="checkbox" />
+      <label for="hide-followed">Hide followed by connections</label>
+    </div>
+
+    <div class="divider">Other</div>
+
+    <p class="is-pulled-left level-item">Hide posts older than</p>
+    <div class="is-pulled-right select is-small">
+      <select id="hide-by-age">
+        <option value="disabled">Disabled</option>
+        <option value="hour">an hour</option>
+        <option value="day">a day</option>
+        <option value="week">a week</option>
+        <option value="month">a month</option>
+        <option value="year">a year</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="Jobs" class="px-4 pb-4 content-tab">
+    <div class="field">
+      <input id="hide-job-guidance" class="switch" type="checkbox" />
+      <label for="hide-job-guidance">Hide job guidance</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-ai-button" class="switch" type="checkbox" />
+      <label for="hide-ai-button">Hide AI button</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-promoted-jobs" class="switch" type="checkbox" />
+      <label for="hide-promoted-jobs">Hide promoted</label>
+    </div>
+
+    <div class="divider">Hide jobs by keywords</div>
+
+    <div class="field">
+      <input id="hide-by-job-keywords" placeholder="Add keywords" class="tagify--outside" />
+    </div>
+  </div>
+
+  <div id="Misc" class="px-4 pb-4 content-tab">
+    <div class="field">
+      <input id="disable-postcount-prompt" class="switch" type="checkbox" />
+      <label for="disable-postcount-prompt">Disable post count prompt for feed</label>
+    </div>
+
+    <div class="divider">Actions</div>
+
+    <div class="field">
+      <button id="unfollow-all" class="button is-primary is-outlined is-fullwidth is-rounded">
+        Unfollow All
+      </button>
+    </div>
+
+    <div class="divider">Other hideables</div>
+
+    <div class="field">
+      <input id="hide-linkedin-learning" class="switch" type="checkbox" />
+      <label for="hide-linkedin-learning">Hide LinkedIn learning courses</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-advertisements" class="switch" type="checkbox" />
+      <label for="hide-advertisements">Hide all advertisements</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-follow-recommendations" class="switch" type="checkbox" />
+      <label for="hide-follow-recommendations">
+        Hide follow recommendations
+      </label>
+    </div>
+
+    <div class="field">
+      <input id="hide-notification-count" class="switch" type="checkbox" />
+      <label for="hide-notification-count"> Hide notification count </label>
+    </div>
+
+    <div class="field">
+      <input id="hide-profile-counters" class="switch" type="checkbox" />
+      <label for="hide-profile-counters">Hide profile counters</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-community-panel" class="switch" type="checkbox" />
+      <label for="hide-community-panel">Hide community panel</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-account-building" class="switch" type="checkbox" />
+      <label for="hide-account-building">Hide account building prompts</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-network-building" class="switch" type="checkbox" />
+      <label for="hide-network-building">Hide network building prompts</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-premium" class="switch" type="checkbox" />
+      <label for="hide-premium">Hide LinkedIn premium prompts</label>
+    </div>
+
+    <div class="field">
+      <input id="hide-news" class="switch" type="checkbox" />
+      <label for="hide-news">Hide LinkedIn News</label>
+    </div>
+
+    <div class="block pt-4">
+      <h2 class="title is-2 has-text-centered">WORK IN PROGRESS</h2>
+      <p class="has-text-centered">
+        I'm working hard on writing the new features in this category. If you'd
+        like to help, please make a feature request on
+        <a href="https://github.com/njelich/LinkOff">github</a> or share the
+        extension with your colleagues.
+      </p>
+    </div>
+  </div>
+
+  <link href="assets/lib/tagify.css" rel="stylesheet" type="text/css" />
+  <script language="javascript" src="assets/lib/tagify.min.js"></script>
+  <script language="javascript" src="popup.js"></script>
+</body>

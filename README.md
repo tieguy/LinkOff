@@ -62,41 +62,96 @@ Also available on Firefox. Coming soon to Opera and other browsers.
 
 > ⭐️ Made with ❤️ by Noah Jelich
 
+🚀 Installation Options
+
+### Browser Extension (Chrome/Firefox)
+
+Install from the official stores:
+- [Chrome Web Store](https://chrome.google.com/webstore/detail/linkoff-clean-your-feed/maanaljajdhhnllllmhmiiboodmoffon)
+- [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/linkoff-clean-your-feed/)
+
+### Userscript (Tampermonkey/Safari)
+
+For Safari users or those who prefer userscripts:
+
+1. Install a userscript manager:
+   - **Safari**: [Userscripts app](https://apps.apple.com/us/app/userscripts/id1463298887)
+   - **Chrome/Firefox**: [Tampermonkey](https://www.tampermonkey.net/)
+   - **Firefox**: [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
+
+2. Install the userscript from [dist/linkoff.user.js](dist/linkoff.user.js) or build it yourself (see below)
+
+3. Use the userscript manager's menu to toggle settings. Changes require a page refresh.
+
 🚀 Frequently Asked Questions
 
-> ⭐️ Are you going to make a Tampermonkey/Greasemonkey script?
->
-> Unfortunately, no. I do not have time to maintain any more code
 > ⭐️ What about Vivaldi/Brave/Edge/Opera and other browsers?
 >
 > The extension can be natively installed on all chromium browsers
-> ⭐️ What about Safari and MacOs?
+> ⭐️ What about Safari and MacOS?
 >
-> The store charges 100$ per year to post apps, which I cannot afford
+> Use the userscript version with the Userscripts app (available on Mac App Store)
 > ⭐️ How can I use this on mobile?
 >
-> Since neither Chrome or Firefox allow for extensions in mobile browsers, you need to install a chromium distribution that does. I recommend Kiwi Browser (if you have any issues, please report them, still testing mobile support)
+> On iOS/iPadOS: Use Safari with the Userscripts app
+> On Android: Use Kiwi Browser or Firefox with Tampermonkey
 
 ### Contributing
 
 Please create an issue before submitting a pull request.
 
-Use npm to install dependencies, simply run `npm i`. To rebuild the CSS from SCSS run `npm run css-build`.
+#### Development Setup
 
-To install the extension locally follow the instructions below for your browser.
+```bash
+# Install dependencies
+npm install
+
+# Build everything (extension + userscript)
+npm run build
+
+# Watch mode for development
+npm run build:watch
+
+# Run extension in Firefox for testing
+npm run dev
+
+# Package extension for release
+npm run package
+```
+
+#### Build Outputs
+
+- `dist/extension/` - Browser extension (Chrome/Firefox)
+- `dist/linkoff.user.js` - Userscript for Tampermonkey/Userscripts app
+
+#### Project Structure
+
+```
+src/
+  core/           # Shared core logic
+    filters/      # Feed, job, misc filtering + selectors
+    features/     # General features (dark mode, messaging)
+    settings/     # Settings defaults and storage interface
+    utils/        # DOM utilities
+  extension/      # Browser extension wrapper
+  userscript/     # Userscript wrapper
+  popup/          # Extension popup UI (SCSS)
+```
+
+#### Loading the Extension Locally
 
 **Firefox**
 
 - Type about:debugging in the Firefox URL bar and press enter.
-- Click This Firefox on the left, and then Load Temporary Add-on... in the middle
-- Navigate to the location of the folder you unzipped, select the manifest.json file inside.
+- Click This Firefox on the left, and then Load Temporary Add-on...
+- Navigate to `dist/extension/` and select the manifest.json file.
 
-**Chromium**
+**Chrome/Chromium**
 
 - Type chrome://extensions in the Chrome URL bar and press enter.
 - Enable developer mode using the toggle on the right
 - Click Load Unpacked on the left side of the screen.
-- Navigate to the location of the folder you unzipped, and select it.
+- Navigate to and select the `dist/extension/` folder.
 
 #### Commit message format
 

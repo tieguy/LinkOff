@@ -1,12 +1,18 @@
 {
+  "name": "linkoff",
+  "version": "1.10.0",
   "scripts": {
-    "css-build": "sass --no-source-map src/popup/popup.scss src/popup/popup.css",
-    "css-watch": "npm run css-build -- --watch",
-    "start": "npm run css-watch",
-    "lint": "eslint . --ignore-path .eslintignore"
+    "build": "rollup -c && npm run build:css",
+    "build:css": "sass --no-source-map src/popup/popup.scss dist/extension/popup.css",
+    "build:watch": "rollup -c -w",
+    "dev": "npm run build && web-ext run -s dist/extension",
+    "package": "npm run build && web-ext build -s dist/extension -a releases/",
+    "lint": "eslint src/ --ignore-path .eslintignore"
   },
   "devDependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@yaireo/tagify": "^4.1.1",
     "bulma": "^0.9.2",
     "bulma-switch": "^2.0.0",
@@ -14,7 +20,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.4.1",
-    "sass": "^1.80.4"
+    "rollup": "^4.24.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "sass": "^1.80.4",
+    "web-ext": "^8.3.0"
   },
   "release": {
     "branches": [
