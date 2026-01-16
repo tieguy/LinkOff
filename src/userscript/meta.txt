@@ -1,0 +1,17 @@
+// ==UserScript==
+// @name         LinkOff
+// @namespace    https://github.com/njelich/LinkOff
+// @version      {{version}}
+// @description  Filter and customize your LinkedIn feed - hide promoted posts, suggestions, reactions, and more
+// @author       Noah Jelich
+// @match        https://www.linkedin.com/*
+// @match        https://linkedin.com/*
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_registerMenuCommand
+// @run-at       document-idle
+// @homepageURL  https://github.com/njelich/LinkOff
+// @supportURL   https://github.com/njelich/LinkOff/issues
+// @license      MIT
+// ==/UserScript==
+
