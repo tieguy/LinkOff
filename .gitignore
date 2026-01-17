@@ -2,8 +2,9 @@
 /.vscode
 node_modules
 
-# Build output
+# Build output (except userscript for direct installation)
 dist/
+!dist/linkoff.user.js
 
 # Releases
 releases/
