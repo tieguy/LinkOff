@@ -36,6 +36,7 @@ export const SELECTORS = {
   FEED_TEXT_SUPPORTS: 'supports this',
   FEED_TEXT_FUNNY: 'finds this funny',
   FEED_TEXT_COMMENTED: 'commented on this',
+  FEED_TEXT_REPOSTED: 'reposted this',
 
   // Feed container (for hiding whole feed)
   FEED_CONTAINER: 'scaffold-finite-scroll__content',

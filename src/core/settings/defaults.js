@@ -23,6 +23,7 @@ export const DEFAULT_SETTINGS = {
   'hide-by-people': false,
   'hide-commented-on': false,
   'hide-followed': true, // Hide "following" posts
+  'first-degree-only': false, // Only show posts from first-degree connections (hides all engagement posts)
   'hide-images': false,
   'hide-links': false,
   'hide-polls': true,
@@ -68,6 +69,7 @@ export const SETTING_LABELS = {
   'hide-by-people': 'Hide People Posts',
   'hide-commented-on': 'Hide "Commented on" Posts',
   'hide-followed': 'Hide Following Posts',
+  'first-degree-only': 'First-Degree Only (Hide All Engagement Posts)',
   'hide-images': 'Hide Images',
   'hide-links': 'Hide Links',
   'hide-polls': 'Hide Polls',

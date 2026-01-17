@@ -1,9 +1,10 @@
 // Userscript entry point
-// Initializes LinkOff with GM storage and menu commands
+// Initializes LinkOff with GM storage, menu commands, and preferences panel
 
 import { initLinkOff } from '../core/index.js'
 import { storage } from './storage.js'
 import { DEFAULT_SETTINGS, SETTING_LABELS } from '../core/settings/defaults.js'
+import { createPreferencesPanel } from '../core/ui/preferences-panel.js'
 
 // Inject CSS for hide/dim functionality
 const injectStyles = () => {
@@ -107,4 +108,12 @@ const registerMenuCommands = () => {
 
   // Initialize LinkOff
   initLinkOff(storage)
+
+  // Create preferences panel (floating settings button)
+  const prefsPanel = createPreferencesPanel(storage)
+
+  // Add menu command to open settings panel
+  GM_registerMenuCommand('Open Settings Panel', () => {
+    prefsPanel.open()
+  })
 })()

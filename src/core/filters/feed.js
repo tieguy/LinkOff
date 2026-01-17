@@ -153,6 +153,23 @@ export const getFeedKeywords = (response) => {
     keywords.push(`text::${SELECTORS.FEED_TEXT_SUGGESTED}`)
   if (response['hide-carousels']) keywords.push(SELECTORS.FEED_CAROUSEL)
 
+  // First-degree only mode - hide all engagement-type posts
+  if (response['first-degree-only']) {
+    keywords.push(
+      `text::${SELECTORS.FEED_TEXT_LIKES_THIS}`,
+      `text::${SELECTORS.FEED_TEXT_LIKE_THIS}`,
+      `text::${SELECTORS.FEED_TEXT_LOVES_THIS}`,
+      `text::${SELECTORS.FEED_TEXT_INSIGHTFUL}`,
+      `text::${SELECTORS.FEED_TEXT_CELEBRATES}`,
+      `text::${SELECTORS.FEED_TEXT_CURIOUS}`,
+      `text::${SELECTORS.FEED_TEXT_SUPPORTS}`,
+      `text::${SELECTORS.FEED_TEXT_FUNNY}`,
+      `text::${SELECTORS.FEED_TEXT_COMMENTED}`,
+      `text::${SELECTORS.FEED_TEXT_FOLLOWING}`,
+      `text::${SELECTORS.FEED_TEXT_REPOSTED}`
+    )
+  }
+
   console.log('LinkOff: Current feed keywords are', keywords)
   return keywords
 }
