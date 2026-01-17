@@ -14,7 +14,7 @@ See also [LLM-MAINTAINERSHIP.md](./LLM-MAINTAINERSHIP.md) for the broader method
   - Run linting as part of CI
 
 ### Code Quality Foundation
-- [ ] **Set up Vitest testing framework**
+- [x] **Set up Vitest testing framework**
   - Install vitest and jsdom for DOM testing
   - Configure for ES modules (should work out of the box)
   - Add `npm run test` and `npm run test:coverage` scripts
@@ -27,10 +27,10 @@ See also [LLM-MAINTAINERSHIP.md](./LLM-MAINTAINERSHIP.md) for the broader method
   - Configure quality gates (zero new bugs/vulnerabilities, <5% debt ratio)
 
 - [ ] **Add test coverage reporting**
-  - Configure Vitest coverage with v8 or istanbul provider
-  - Set coverage thresholds (initial: 40%, target: 80%)
-  - Upload coverage reports to SonarQube
-  - Add coverage badge to README
+  - [x] Configure Vitest coverage with v8 provider
+  - [ ] Enable coverage thresholds in `vitest.config.js` once coverage improves (initial: 40%, target: 80%)
+  - [ ] Upload coverage reports to SonarQube
+  - [ ] Add coverage badge to README
 
 ### Testing
 - [ ] **Manual testing of extension build**
