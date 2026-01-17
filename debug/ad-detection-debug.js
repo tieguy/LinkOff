@@ -1,8 +1,8 @@
 /**
- * LinkOff Ad Detection Debugger
+ * LinkOff Deep Diagnostics Debugger
  *
  * Run this script in your browser's DevTools console while on LinkedIn
- * to diagnose why ads might not be getting filtered.
+ * to diagnose why content filtering might not be working.
  *
  * Usage:
  * 1. Go to linkedin.com/feed
@@ -13,7 +13,7 @@
 
 ;(function () {
   console.log('='.repeat(60))
-  console.log('LinkOff Ad Detection Debugger')
+  console.log('LinkOff Deep Diagnostics Debugger')
   console.log('='.repeat(60))
 
   // Current selectors from the codebase
@@ -186,27 +186,101 @@
     )
   }
 
-  // 7. Summary and recommendations
+  // 7. Check if LinkOff script is loaded
+  console.log('\n--- LinkOff Script Detection ---')
+  const linkoffStyles = Array.from(document.querySelectorAll('style')).filter(
+    (s) => s.textContent.includes('.hide[class]') || s.textContent.includes('.dim:not(:hover)')
+  )
+  console.log(`LinkOff style tags found: ${linkoffStyles.length}`)
+  if (linkoffStyles.length === 0) {
+    console.log('⚠️  LinkOff CSS not injected - script may not be running!')
+  }
+
+  // 8. Check for LinkOff console logs
+  console.log('\n--- Recent Console Activity ---')
+  console.log('Filter console by "LinkOff" to see script logs')
+  console.log('Expected logs if working:')
+  console.log('  - "LinkOff: Current feed keywords are [...]"')
+  console.log('  - "LinkOff: Found X unblocked posts"')
+  console.log('  - "LinkOff: Blocked post ... for keyword ..."')
+
+  // 9. Test alternative post selectors
+  console.log('\n--- Alternative Post Selector Discovery ---')
+  const alternativeSelectors = [
+    '[data-urn]',
+    '[data-id]',
+    '.feed-shared-update-v2',
+    '.occludable-update',
+    '[data-occludable-job-id]',
+    '.scaffold-finite-scroll__content > div',
+    '.feed-shared-update-v2__content',
+  ]
+  alternativeSelectors.forEach((sel) => {
+    try {
+      const count = document.querySelectorAll(sel).length
+      if (count > 0) {
+        console.log(`  "${sel}": ${count} elements`)
+      }
+    } catch (e) {
+      // Invalid selector
+    }
+  })
+
+  // 10. Inspect actual data-id format on page
+  console.log('\n--- Actual data-id Formats Found ---')
+  const elementsWithDataId = document.querySelectorAll('[data-id]')
+  const dataIdFormats = new Set()
+  elementsWithDataId.forEach((el) => {
+    const dataId = el.getAttribute('data-id')
+    if (dataId) {
+      // Extract the format (e.g., "urn:li:activity", "urn:li:aggregate")
+      const match = dataId.match(/^(urn:li:\w+)/)
+      if (match) dataIdFormats.add(match[1])
+    }
+  })
+  if (dataIdFormats.size > 0) {
+    console.log('Found data-id prefixes:')
+    dataIdFormats.forEach((format) => console.log(`  - ${format}`))
+  } else {
+    console.log('⚠️  No data-id attributes found on page!')
+    console.log('    LinkedIn may have changed their DOM structure.')
+  }
+
+  // 11. Summary and recommendations
   console.log('\n' + '='.repeat(60))
   console.log('SUMMARY & RECOMMENDATIONS')
   console.log('='.repeat(60))
 
+  const issues = []
+
+  if (linkoffStyles.length === 0) {
+    issues.push('LinkOff CSS not found - userscript may not be installed/running')
+  }
+
   if (activityPosts.length === 0 && aggregatePosts.length === 0) {
-    console.log(
-      '⚠️  No feed posts found. Are you on the LinkedIn feed page?'
-    )
+    if (dataIdFormats.size > 0) {
+      issues.push('Post selectors outdated - data-id format may have changed')
+    } else {
+      issues.push('No feed posts found - are you on linkedin.com/feed?')
+    }
   }
 
   if (promotedPosts.length > 0 && hiddenPosts.length === 0) {
-    console.log(
-      '⚠️  Promoted posts found but none are hidden.'
-    )
-    console.log('   Possible causes:')
-    console.log('   1. LinkOff main-toggle might be disabled')
-    console.log('   2. hide-promoted setting might be disabled')
-    console.log('   3. LinkOff script might not be running')
+    issues.push('Promoted posts exist but none hidden - filtering not running')
   }
 
-  console.log('\nTo see LinkOff logs, filter console by "LinkOff"')
+  if (issues.length === 0) {
+    console.log('✓ No obvious issues detected')
+    console.log('  Check console for "LinkOff:" logs')
+  } else {
+    console.log('Issues found:')
+    issues.forEach((issue, i) => console.log(`  ${i + 1}. ${issue}`))
+  }
+
+  console.log('\n--- Next Steps ---')
+  console.log('1. Filter console by "LinkOff" to see script activity')
+  console.log('2. Check Tampermonkey dashboard: is LinkOff enabled?')
+  console.log('3. Look for errors in the console')
+  console.log('4. Share this output for further debugging')
   console.log('='.repeat(60))
 })()
