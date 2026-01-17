@@ -24,6 +24,7 @@ This file provides context and instructions for Claude (or other AI assistants) 
 | Build | Rollup 4.24.0 |
 | CSS | Sass + Bulma |
 | Linting | ESLint 7.32.0 + Prettier |
+| Testing | Vitest + jsdom |
 | UI Library | Tagify (for keyword inputs) |
 | Dev Tool | web-ext (Firefox testing) |
 | CI/CD | GitHub Actions |
@@ -65,6 +66,9 @@ src/
 ├── icons/               # Extension icons
 └── lib/                 # Vendored libraries (Tagify)
 
+tests/                   # Test files (Vitest)
+└── *.test.js            # Test specs
+
 dist/                    # Build output (generated)
 ├── extension/           # Browser extension build
 └── linkoff.user.js      # Userscript build
@@ -87,6 +91,15 @@ npm run dev
 
 # Lint code
 npm run lint
+
+# Run tests
+npm run test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
 
 # Package for release
 npm run package
@@ -146,6 +159,7 @@ export function filterPost(post, settings) {
 | `src/core/settings/defaults.js` | All settings with defaults and labels |
 | `src/extension/manifest.json` | Extension permissions and configuration |
 | `rollup.config.js` | Build configuration for all outputs |
+| `vitest.config.js` | Test configuration (coverage thresholds commented out until coverage improves) |
 
 ## Working with LinkedIn Selectors
 
@@ -169,6 +183,7 @@ export const FEED_SELECTORS = {
 
 When making changes, verify:
 
+- [ ] `npm run test` passes with no errors
 - [ ] `npm run lint` passes with no errors
 - [ ] `npm run build` completes successfully
 - [ ] Extension loads in Chrome (`chrome://extensions` → Load unpacked)
@@ -217,11 +232,12 @@ Chrome extension uses Manifest V3:
 This project follows rigorous quality standards as part of an LLM-maintainership experiment. See [LLM-MAINTAINERSHIP.md](./LLM-MAINTAINERSHIP.md) for details.
 
 **Before Committing**:
-1. Run `npm run lint` and fix all issues
-2. Run `npm run build` and verify success
-3. Test the change manually if possible
-4. Write clear, descriptive commit messages
-5. Keep changes focused and minimal
+1. Run `npm run test` and ensure all tests pass
+2. Run `npm run lint` and fix all issues
+3. Run `npm run build` and verify success
+4. Test the change manually if possible
+5. Write clear, descriptive commit messages
+6. Keep changes focused and minimal
 
 **Commit Message Format** (Conventional Commits):
 ```
